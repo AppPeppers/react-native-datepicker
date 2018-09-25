@@ -6,6 +6,7 @@ import {
   Image,
   Modal,
   TouchableHighlight,
+  TouchableOpacity,
   DatePickerAndroid,
   TimePickerAndroid,
   DatePickerIOS,
@@ -413,7 +414,7 @@ class DatePicker extends Component {
                         allowFontScaling={allowFontScaling}
                         style={[Style.btnTextText, Style.btnTextCancel, customStyles.btnTextCancel]}
                       >
-                        {cancelBtnText}
+                        <CancelButton />
                       </Text>
                     </TouchableComponent>
                     <TouchableComponent
@@ -425,7 +426,7 @@ class DatePicker extends Component {
                       <Text allowFontScaling={allowFontScaling}
                             style={[Style.btnTextText, customStyles.btnTextConfirm]}
                       >
-                        {confirmBtnText}
+                        <ConfirmButton />
                       </Text>
                     </TouchableComponent>
                   </Animated.View>
@@ -448,8 +449,8 @@ DatePicker.defaultProps = {
 
   // slide animation duration time, default to 300ms, IOS only
   duration: 300,
-  confirmBtnText: '确定',
-  cancelBtnText: '取消',
+  ConfirmButton: TouchableOpacity,
+  CancelButton: TouchableOpacity,
   iconSource: require('./date_icon.png'),
   customStyles: {},
 
@@ -472,8 +473,8 @@ DatePicker.propTypes = {
   maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   height: PropTypes.number,
   duration: PropTypes.number,
-  confirmBtnText: PropTypes.string,
-  cancelBtnText: PropTypes.string,
+  ConfirmButton: PropTypes.element,
+  CancelButton: PropTypes.element,
   iconSource: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   iconComponent: PropTypes.element,
   customStyles: PropTypes.object,
