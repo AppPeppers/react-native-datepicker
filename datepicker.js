@@ -6,6 +6,7 @@ import {
   Image,
   Modal,
   TouchableHighlight,
+  TouchableOpacity,
   DatePickerAndroid,
   TimePickerAndroid,
   DatePickerIOS,
@@ -334,8 +335,9 @@ class DatePicker extends Component {
       maxDate,
       minuteInterval,
       timeZoneOffsetInMinutes,
-      cancelBtnText,
-      confirmBtnText,
+      headerTitle,
+      headerTitleStyle,
+      confirmButton,
       TouchableComponent,
       testID,
       cancelBtnTestID,
@@ -380,7 +382,7 @@ class DatePicker extends Component {
               <TouchableComponent
                 style={Style.datePickerMask}
                 activeOpacity={1}
-                underlayColor={'#00000077'}
+                underlayColor={'#00000040'}
                 onPress={this.onPressMask}
               >
                 <TouchableComponent
@@ -403,30 +405,23 @@ class DatePicker extends Component {
                         locale={locale}
                       />
                     </View>
-                    <TouchableComponent
-                      underlayColor={'transparent'}
-                      onPress={this.onPressCancel}
-                      style={[Style.btnText, Style.btnCancel, customStyles.btnCancel]}
-                      testID={cancelBtnTestID}
-                    >
+                    <View style={[Style.btnText, Style.btnCancel, customStyles.btnCancel]}>
                       <Text
-                        allowFontScaling={allowFontScaling}
-                        style={[Style.btnTextText, Style.btnTextCancel, customStyles.btnTextCancel]}
-                      >
-                        {cancelBtnText}
+                          allowFontScaling={allowFontScaling}
+                          style={[Style.btnTextText, Style.btnTextCancel, headerTitleStyle]}
+                        >
+                          {headerTitle}
                       </Text>
-                    </TouchableComponent>
+                    </View>
+
                     <TouchableComponent
                       underlayColor={'transparent'}
                       onPress={this.onPressConfirm}
                       style={[Style.btnText, Style.btnConfirm, customStyles.btnConfirm]}
                       testID={confirmBtnTestID}
                     >
-                      <Text allowFontScaling={allowFontScaling}
-                            style={[Style.btnTextText, customStyles.btnTextConfirm]}
-                      >
-                        {confirmBtnText}
-                      </Text>
+
+                      {confirmButton}
                     </TouchableComponent>
                   </Animated.View>
                 </TouchableComponent>
@@ -448,8 +443,8 @@ DatePicker.defaultProps = {
 
   // slide animation duration time, default to 300ms, IOS only
   duration: 300,
-  confirmBtnText: '确定',
-  cancelBtnText: '取消',
+  confirmButton: TouchableOpacity,
+  cancelButton: TouchableOpacity,
   iconSource: require('./date_icon.png'),
   customStyles: {},
 
@@ -472,11 +467,12 @@ DatePicker.propTypes = {
   maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   height: PropTypes.number,
   duration: PropTypes.number,
-  confirmBtnText: PropTypes.string,
-  cancelBtnText: PropTypes.string,
+  headerTitle: PropTypes.string,
+  confirmButton: PropTypes.element,
   iconSource: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   iconComponent: PropTypes.element,
   customStyles: PropTypes.object,
+
   showIcon: PropTypes.bool,
   disabled: PropTypes.bool,
   allowFontScaling: PropTypes.bool,

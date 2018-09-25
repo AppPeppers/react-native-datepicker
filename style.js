@@ -34,7 +34,7 @@ let style = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-end',
     flexDirection: 'row',
-    backgroundColor: '#00000077'
+    backgroundColor: '#00000040'
   },
   datePickerCon: {
     backgroundColor: '#fff',
@@ -65,8 +65,6 @@ let style = StyleSheet.create({
   },
   datePicker: {
     marginTop: 42,
-    borderTopColor: '#ccc',
-    borderTopWidth: 1
   },
   disabled: {
     backgroundColor: '#eee'
