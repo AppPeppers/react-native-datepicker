@@ -152,8 +152,7 @@ class DatePicker extends Component {
     const { mode, format = FORMATS[mode] } = this.props;
 
     if (date == "Today") {
-      var d = new Date();
-      date = d.toDateString();
+      date = new Date();
     }
 
     const dateInstance = date instanceof Date ? date : this.getDate(date);
