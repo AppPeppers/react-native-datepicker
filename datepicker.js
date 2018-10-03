@@ -157,6 +157,13 @@ class DatePicker extends Component {
       return this.props.getDateStr(dateInstance);
     }
 
+    var d = new Date();
+    var today = d.toDateString() === dateInstance.toDateString();
+
+    if (today) {
+      return "Today";
+    }
+
     return Moment(dateInstance).format(format);
   }
 
